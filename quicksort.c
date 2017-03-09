@@ -30,7 +30,7 @@ int partition(int *A,int start_idx,int end_idx)
 
   srand( (unsigned) time(NULL));
 
-  int pivot_idx = rand()%(end_idx); // rand is inclusive of RAND_MAX
+  int pivot_idx = start_idx + rand()%(end_idx - start_idx); // rand is inclusive of [0,RAND_MAX]
   //moves pivot to the end
   swap(A,pivot_idx,end_idx);
   printf("\n------ PARTITION FUNC PIVOT: %d ------------------\n", A[end_idx]);
@@ -76,9 +76,9 @@ void swap(int *A, int from , int to)
 
 int main ()
 {
-  /* int A[15]= {-1,-5,6,3,2,9,4,24,18,31,13,5,5,5,5}; */
+  int A[15]= {-1,-5,6,3,2,9,4,24,18,31,13,5,5,5,5};
   /* int A[7]= {1,5,6,3,2,9,4}; */
-  int A[4]= {5,3,4,6};
+  /* int A[4]= {5,3,4,6}; */
   int *p = A;
   int r = sizeof(A)/sizeof(int);
 
