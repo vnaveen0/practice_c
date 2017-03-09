@@ -4,7 +4,7 @@
 
 
 
-bool merge (int* B,int* Left,int* Right, int left_size, int right_size );
+bool merge (int* B,int* Left,int* Right, int l_size, int r_size );
 
 // sort them 
 bool mergesort(int* A, int size)
@@ -29,6 +29,7 @@ bool mergesort(int* A, int size)
   i=q+1;
   j = 0;
 
+  //Copy elements of Right Sub Tree
   for (j=0,i=q; i<size;i++,j++) 
     Right[j] = A[i];
 
@@ -51,12 +52,10 @@ bool mergesort(int* A, int size)
   return true;
 }
 
-bool merge (int* B,int* Left,int* Right, int left_size, int right_size )
+bool merge (int* B,int* Left,int* Right, int l_size, int r_size )
 {
-  printf("Merge left_size=%d, right_size=%d, \n",left_size,right_size);
+  printf("Merge left_size=%d, right_size=%d, \n",l_size,r_size);
 
-  int l_size = left_size;
-  int r_size = right_size;
   int l_idx =0, r_idx =0;
   int j = 0;
 
@@ -93,9 +92,8 @@ bool merge (int* B,int* Left,int* Right, int left_size, int right_size )
   }
 
   printf("-----------\n");
-
   j =0;
-  for (j=0;j< left_size+right_size;j++)
+  for (j=0;j< l_size+r_size;j++)
   {
     printf(" %d",B[j]);
   }
@@ -116,6 +114,7 @@ int main ()
   int r = sizeof(A)/sizeof(int);
 
   int i =0;
+  printf("Original Input:\n");
   for (i=0;i<r;i++)
   {
     printf(" %d",A[i]);
@@ -128,6 +127,7 @@ int main ()
 
   i=0;
 
+  printf("Sorted Output: \n");
   for (i=0;i<r;i++)
   {
     printf(" %d",A[i]);
