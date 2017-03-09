@@ -11,10 +11,6 @@ char* reverseString(char* s) {
   tmp[i] = '\0'; 
   i--;
 
-  
-
-//   while(*s != '\0')
-
    while(i != -1)
   {
     tmp[i] = *s;
