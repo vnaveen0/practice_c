@@ -10,64 +10,7 @@ struct Node
 
 typedef struct Node Node;
 
-//implement a function that merge 2 sorted linked list 
-Node* sort_two_list(Node* head1,Node* head2)
-{
 
-    if(head1==NULL)
-      return head2;
-    else if( head2==NULL)
-      return head1;
-
-    Node *sorted_head = (Node*)malloc(sizeof(Node));
-    Node *tmp = (Node*)malloc(sizeof(Node));
-    Node* prev_sorted = tmp;
-    sorted_head== NULL;
-
-    if(head1->val < head2->val)
-    {
-      sorted_head = head1;
-    }
-    else 
-    {
-      sorted_head = head2;
-    }
-
-    Node* curr1 = head1;
-    Node* curr2 = head2;
-
-    while(curr1 != NULL &&  curr2 != NULL)
-    {
-
-      if(curr1->val <= curr2->val)
-      {
-        prev_sorted->next = curr1;
-        prev_sorted = curr1;
-        curr1 = curr1->next;
-
-      }
-      else {
-
-        prev_sorted->next = curr2;
-        prev_sorted = curr2;
-        curr2 = curr2->next;
-
-      }
-
-    }
-
-    if(curr2 == NULL)
-      prev_sorted->next=curr1;
-    else if(curr1 == NULL)
-      prev_sorted->next=curr2;
-
-    
-    free(tmp);
-
-
-    return sorted_head;
-
-}
 
 Node* create_list(int val, Node* head)
 {
@@ -157,6 +100,36 @@ void print_list(Node* head)
     return;
 }
 
+
+//TODO : remove duplicates from sorted linklist
+Node* remove_duplicates(Node* head)
+{
+  if(head == NULL || head->next == NULL)
+    return head;
+
+  Node* curr = head;
+
+
+  while(curr->next != NULL)
+  {
+    if(curr->val == curr->next->val)
+    {
+      Node* next_next = curr->next->next;
+      free(curr->next);
+      curr->next = next_next;
+    }
+    else {
+      curr= curr->next;
+    }
+
+  }
+
+  return head;
+
+
+}
+
+
 int main(void)
 {
 
@@ -164,33 +137,19 @@ int main(void)
   Node* head = (Node*) malloc(sizeof(Node));
   head = NULL;
 
-  Node* head2 = (Node*) malloc(sizeof(Node));
-  head2 = NULL;
-
-  int i = 0, ret = 0;
-
 
   head= add_to_list(11,head);
   head= add_to_list(9,head);
-  head= add_to_list(7,head);
-  head= add_to_list(6,head);
-  head= add_to_list(5,head);
+  head= add_to_list(9,head);
+  head= add_to_list(9,head);
+  head= add_to_list(9,head);
 
   print_list(head);
 
+  head=remove_duplicates(head);
 
-  head2= add_to_list(10,head2);
-  head2= add_to_list(8,head2);
-  head2= add_to_list(7,head2);
-  head2= add_to_list(4,head2);
-
-  print_list(head2);
-
-
-  Node* sorted_head = (Node*) malloc(sizeof(Node));
-  sorted_head = sort_two_list(head, head2);
-  print_list(sorted_head);
-  
+  print_list(head);
+ 
   return 0;
 }
 
