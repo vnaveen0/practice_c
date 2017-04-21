@@ -125,8 +125,6 @@ Node* remove_duplicates(Node* head)
   }
 
   return head;
-
-
 }
 
 
