@@ -16,7 +16,7 @@
 using namespace std;
 
 
-void print_arr( int **arr, int SIZE)
+void print_arr( int **arr, const int SIZE)
 {
   int row = 0, col=0;
 
@@ -31,7 +31,7 @@ void print_arr( int **arr, int SIZE)
 }
 
 
-bool readsudoku(const char* input_file, int** &arr, int SIZE)
+bool readsudoku(const char* input_file, int** &arr,const int SIZE)
 {
   ifstream inFile(input_file);
   // ifstream inFile("input_sudoku.txt");
@@ -80,7 +80,7 @@ bool readsudoku(const char* input_file, int** &arr, int SIZE)
   return true;
 }
 
-bool find_unassigned(int** arr, int SIZE, int & row, int & col)
+bool find_unassigned(int** arr, const int SIZE, int & row, int & col)
 {
   for(row=0;row<SIZE;row++)
   {
@@ -95,7 +95,7 @@ bool find_unassigned(int** arr, int SIZE, int & row, int & col)
 
 }
 
-bool is_row_safe( int** arr, int SIZE, int num, int row)
+bool is_row_safe( int** arr, const int SIZE, int num, int row)
 {
   int col=0;
   for(col=0; col<SIZE; col++)
@@ -107,7 +107,7 @@ bool is_row_safe( int** arr, int SIZE, int num, int row)
   // cout<<"ROW SAFE: num: "<<num<<endl;
 }
 
-bool is_col_safe( int** arr, int SIZE, int num, int col)
+bool is_col_safe( int** arr, const int SIZE, int num, int col)
 {
   int row=0;
   for(row=0; row<SIZE; row++)
@@ -119,7 +119,7 @@ bool is_col_safe( int** arr, int SIZE, int num, int col)
   // cout<<"COL SAFE: num: "<<num<<endl;
 }
 
-bool is_box_safe( int** arr, int SIZE, int num, int row,  int col)
+bool is_box_safe( int** arr, const int SIZE, int num, int row,  int col)
 {
   // cout<<"num= "<<num<<" row: "<<row<<" col: "<<col<<endl;
   int box_size=sqrt(SIZE);
@@ -146,7 +146,7 @@ bool is_box_safe( int** arr, int SIZE, int num, int row,  int col)
   
 }
 
-bool is_safe(int** arr, int SIZE, int num, int row, int col)
+bool is_safe(int** arr, const int SIZE, int num, int row, int col)
 {
   if(is_box_safe(arr,SIZE, num, row, col) && is_col_safe(arr,SIZE ,num, col) && is_row_safe(arr,SIZE, num, row) )
       return true;
@@ -157,7 +157,7 @@ bool is_safe(int** arr, int SIZE, int num, int row, int col)
 
 //TODO: FIND A WAY TO FIND IF INPUT IS WRONG AND ITS NOT POSSIBLE to solve
 //CAN PUT A CHECK TO SEE IF ALL GIVEN INPUTS ARE BOX SAFE, ROW SAFE AND COL SAFE
-bool sudoku_solver(int** arr, int SIZE)
+bool sudoku_solver(int** arr,const int SIZE)
 {
   int row=0, col=0;
 
@@ -214,7 +214,7 @@ int main(int argc, char** argv)
   if(argc != 3) assert(0 && "Please provide 2 arguments, arg[0]= SIZE, arg[1] = input_file (space separated)");
   cout<<"SIZE of sudoku: "<<argv[1]<<endl;
   cout<<"Input file: "<<argv[2]<<endl;
-  int SIZE = atoi(argv[1]);
+  const int SIZE = atoi(argv[1]);
 
 
   int box_size = sqrt(SIZE);
