@@ -15,7 +15,6 @@
 
 using namespace std;
 
-// #define SIZE 9
 
 void print_arr( int **arr, int SIZE)
 {
@@ -68,10 +67,15 @@ bool readsudoku(const char* input_file, int** &arr, int SIZE)
       arr[row][col] = value;
       col++;
     }
+
+    assert(col == SIZE && "#col != SIZE" );
     row++;
     col=0;
 
   }
+
+  assert(row == SIZE && "#row != #SIZE" );
+
 
   return true;
 }
