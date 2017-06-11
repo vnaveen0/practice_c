@@ -15,12 +15,14 @@ class Strings {
       s = _s;
     };
 
-    void removeSpace();
+    void reverse();
+
+    void compactSpace();
     void printString(){cout<<"Printing String: \""<<s<<"\""<<endl;}
 };
 
 void 
-Strings::removeSpace() {
+Strings::compactSpace() {
 
   int i = 1; 
   int j=1;
@@ -46,13 +48,31 @@ Strings::removeSpace() {
 
 }
 
+void 
+Strings::reverse() {
+
+  int i=0;
+  int j = s.size()-1;
+  while (i<j) {
+    char tmp = s[i];
+    s[i] = s[j];
+    s[j] = tmp;
+    i++;
+    j--;
+  }
+
+}
+
+
 
 int main() {
 
   string str = "    ab   c";
   // str = "";
   Strings s(str);
-  s.removeSpace();
+  s.compactSpace();
+  s.printString();
+  s.reverse();
   s.printString();
   return 0;
 }
