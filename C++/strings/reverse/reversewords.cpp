@@ -120,7 +120,7 @@ int main() {
 
   string str = "    ab   c";
   // str = "";
-  str="This  sky is dark            blue";
+  str="  This  sky is dark            blue    ";
   Strings s(str);
 
   cout<<"Compacting"<<endl;

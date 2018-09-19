@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <assert.h>
 
+// #define DEBUG 1
 
 #ifdef DEBUG
 #define Debug(stuff) std::cout << (stuff);
@@ -191,6 +192,9 @@ bool sudoku_solver(int** arr,const int SIZE)
         // cout<<"-----------------"<<endl;
       }
     }
+
+    // cout<<"--Printing sudoku ---------------"<<endl;
+    // print_arr(arr,SIZE);
 
     return false;
   }
